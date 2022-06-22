@@ -58,7 +58,7 @@ function game() {
         console.log("Computer: " + computerSelection.toUpperCase());
         score = playRound(playerSelection, computerSelection);
         console.log(score);
-
+        
         if (score == "You Win!")
             playerWin++;
         else if (score == "You Lose!")
