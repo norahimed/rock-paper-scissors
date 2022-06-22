@@ -1,3 +1,6 @@
+let playerSelection;
+let computerSelection;
+
 // randomly returns either 'Rock', 'Paper', or 'Scissors'
 function computerPlay() {
     let rand = Math.floor(Math.random()*3);
@@ -18,30 +21,57 @@ function playRound(playerSelection, computerSelection) {
     if (pS == 'ROCK')
     {
         if (cS == 'SCISSORS')
-            return "You Win! Rock beats Scissors.";
+            return "You Win!";
         else
-            return "You Lose! Rock beats Scissors.";
+            return "You Lose!";
     }
 
     if (pS == 'PAPER')
     {
         if (cS == 'ROCK')
-            return "You Win! Paper beats Rock.";
+            return "You Win!";
         else
-            return "You Lose! Paper beats Rock.";
+            return "You Lose!";
     }
 
     if (pS == 'SCISSORS')
     {
         if (cS == 'PAPER')
-            return "You Win! Scissors beats Paper.";
+            return "You Win!";
         else
-            return "You Lose! Scissors beats Paper.";    
+            return "You Lose!";    
     }
 
 
 }
 
-const playerSelection = "Rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection))
+
+function game() {
+    let playerWin = 0;
+    let computerWin = 0;
+
+    for (let i=0; i < 5; i++)
+    {
+        computerSelection = computerPlay();
+        playerSelection = prompt(`Round ${i+1}: Rock, Paper, Scissors. Shoot!`)
+        console.log("You chose: " + playerSelection.toUpperCase())
+        console.log("Computer: " + computerSelection.toUpperCase());
+        score = playRound(playerSelection, computerSelection);
+        console.log(score);
+
+        if (score == "You Win!")
+            playerWin++;
+        else if (score == "You Lose!")
+            computerWin++
+    }
+
+    if (playerWin > computerWin)
+        console.log("You won :)");
+    else if (playerWin < computerWin)
+        console.log("You lost :(");
+    else 
+        console.log("You tied!")
+}
+
+game();
+
