@@ -15,7 +15,11 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     pS = playerSelection.toUpperCase();
     cS = computerSelection.toUpperCase();
+    return checkWhoWon(pS, CS);
+}
 
+
+function checkWhoWon(pS, cS) {
     if (pS == cS)
         return "It's a tie";
     if (pS == 'ROCK')
@@ -41,10 +45,7 @@ function playRound(playerSelection, computerSelection) {
         else
             return "You Lose!";    
     }
-
-
 }
-
 
 function game() {
     let playerWin = 0;
@@ -70,8 +71,6 @@ function game() {
     else if (playerWin < computerWin)
         console.log("You lost :(");
     else 
-        console.log("You tied!")
+        console.log("You tied :|")
 }
-
-game();
 
