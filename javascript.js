@@ -1,6 +1,22 @@
 let playerSelection;
 let computerSelection;
 
+let playerWin = 0;
+let computerWin = 0;
+
+const pC = document.querySelector('#playerChoice');
+const cC = document.querySelector('#computerChoice');
+const res = document.querySelector('#Results');
+const totalRes = document.querySelector('#totalResults');
+const rock = document.querySelector('#Rock');
+const paper = document.querySelector('#Paper');
+const scissors = document.querySelector('#Scissors');
+const btns = document.querySelectorAll('.btn');
+const newGame = document.querySelector('#newGame');
+const playerTot = document.querySelector('#playerTotal');
+const computerTot = document.querySelector('#computerTotal');
+
+
 // randomly returns either 'Rock', 'Paper', or 'Scissors'
 function computerPlay() {
     let rand = Math.floor(Math.random()*3);
@@ -17,9 +33,6 @@ function playRound(playerSelection, computerSelection) {
     cS = computerSelection.toUpperCase();
     let score = checkWhoWon(pS, cS);
     
-    const pC = document.querySelector('#playerChoice');
-    const cC = document.querySelector('#computerChoice');
-    const res = document.querySelector('#Results');
     pC.textContent =`You chose: ${pS}\n`
     cC.textContent = `Computer chose: ${cS}\n`
     res.textContent = score;
@@ -55,44 +68,8 @@ function checkWhoWon(pS, cS) {
     }
 }
 
-/*function game() {
-    let playerWin = 0;
-    let computerWin = 0;
-
-    for (let i=0; i < 5; i++)
-    {
-        computerSelection = computerPlay();
-        playerSelection = prompt(`Round ${i+1}: Rock, Paper, Scissors. Shoot!`)
-        console.log("You chose: " + playerSelection.toUpperCase())
-        console.log("Computer: " + computerSelection.toUpperCase());
-        score = playRound(playerSelection, computerSelection);
-        console.log(score);
-        
-        if (score == "You Win!")
-            playerWin++;
-        else if (score == "You Lose!")
-            computerWin++
-    }
-
-    if (playerWin > computerWin)
-        console.log("You won :)");
-    else if (playerWin < computerWin)
-        console.log("You lost :(");
-    else 
-        console.log("You tied :|")
-}*/
-
 function game() {
-    let playerWin = 0;
-    let computerWin = 0;
-    const totalRes = document.querySelector('#totalResults');
-
     let score;
-
-    const rock = document.querySelector('#Rock');
-    const paper = document.querySelector('#Paper');
-    const scissors = document.querySelector('#Scissors');
-    const btns = document.querySelectorAll('.btn');
 
     rock.addEventListener('click', function() {
         score = playRound('Rock', computerPlay());
@@ -106,6 +83,9 @@ function game() {
             computerWin++;
             console.log(`comp: ${computerWin}`);
         }
+
+        playerTot.textContent = `Your Points: ${playerWin}`;
+        computerTot.textContent = `Computer Points: ${computerWin}`;
     });
 
     paper.addEventListener('click', function() {
@@ -120,6 +100,9 @@ function game() {
             computerWin++;
             console.log(`comp: ${computerWin}`);
         }
+
+        playerTot.textContent = `Your Points: ${playerWin}`;
+        computerTot.textContent = `Computer Points: ${computerWin}`;
     });
 
     scissors.addEventListener('click', function() {
@@ -134,6 +117,9 @@ function game() {
             computerWin++;
             console.log(`comp: ${computerWin}`);
         }
+
+         playerTot.textContent = `Your Points: ${playerWin}`;
+        computerTot.textContent = `Computer Points: ${computerWin}`;
     });
 
     btns.forEach(btn => btn.addEventListener('click', function() {
@@ -142,21 +128,32 @@ function game() {
 
         if (playerWin === 5)
         {
-            totalRes.textContent = "You reached 5 points: You won :)";
-            playerWin = 0;
-            computerWin = 0;
+            totalRes.textContent = "You reached 5 points-- You won :)\n Start new game!";
         }
         if (computerWin === 5)
         {
-            totalRes.textContent = "Computer reached 5 points: You lost :(";
-            playerWin = 0;
-            computerWin = 0;
+            totalRes.textContent = "Computer reached 5 points-- You lost :(\n Start new game!";
         }
     }))
+
+    newGame.addEventListener('click', function() {
+        startNewGame();
+    })
 
     console.log(`player tot: ${playerWin}`);
     console.log(`comp tot: ${computerWin}`);
     
 }
 
-game();
+function startNewGame()
+{
+    playerWin = 0;
+    computerWin = 0;
+    playerTot.textContent = `Your Points: ${playerWin}`;
+    computerTot.textContent = `Computer Points: ${computerWin}`;
+    totalRes.textContent = '';
+    game();
+
+}
+
+game()

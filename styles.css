@@ -6,8 +6,12 @@
     text-align: center;
 }
 
+.text {
+    display: flex;
+}
+
 .btn {
-    height: 400px;
+    height: 200px;
     width: 400px;
     margin: 64px 32px;
 }
