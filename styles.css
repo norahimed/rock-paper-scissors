@@ -1,0 +1,13 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#title {
+    text-align: center;
+}
+
+.btn {
+    height: 400px;
+    width: 400px;
+    margin: 64px 32px;
+}

@@ -82,19 +82,81 @@ function checkWhoWon(pS, cS) {
         console.log("You tied :|")
 }*/
 
-const rock = document.querySelector('#Rock');
-const paper = document.querySelector('#Paper');
-const scissors = document.querySelector('#Scissors');
+function game() {
+    let playerWin = 0;
+    let computerWin = 0;
+    const totalRes = document.querySelector('#totalResults');
 
-rock.addEventListener('click', function() {
-    playRound('Rock', computerPlay())
-});
+    let score;
 
-paper.addEventListener('click', function() {
-    playRound('Paper', computerPlay())
-});
+    const rock = document.querySelector('#Rock');
+    const paper = document.querySelector('#Paper');
+    const scissors = document.querySelector('#Scissors');
+    const btns = document.querySelectorAll('.btn');
 
-scissors.addEventListener('click', function() {
-    playRound('Scissors', computerPlay())
-});
+    rock.addEventListener('click', function() {
+        score = playRound('Rock', computerPlay());
+        if (score == "You Win :)")
+        {
+            playerWin++;
+            console.log(`player: ${playerWin}`);
+        }
+        else if (score == "You Lose :(")
+        {
+            computerWin++;
+            console.log(`comp: ${computerWin}`);
+        }
+    });
 
+    paper.addEventListener('click', function() {
+        score = playRound('Paper', computerPlay());
+        if (score == "You Win :)")
+        {
+            playerWin++;
+            console.log(`player: ${playerWin}`);
+        }
+        else if (score == "You Lose :(")
+        {
+            computerWin++;
+            console.log(`comp: ${computerWin}`);
+        }
+    });
+
+    scissors.addEventListener('click', function() {
+        score = playRound('Scissors', computerPlay());
+        if (score == "You Win :)")
+        {
+            playerWin++;
+            console.log(`player: ${playerWin}`);
+        }
+        else if (score == "You Lose :(")
+        {
+            computerWin++;
+            console.log(`comp: ${computerWin}`);
+        }
+    });
+
+    btns.forEach(btn => btn.addEventListener('click', function() {
+        console.log(`player tot: ${playerWin}`);
+        console.log(`comp tot: ${computerWin}`);
+
+        if (playerWin === 5)
+        {
+            totalRes.textContent = "You reached 5 points: You won :)";
+            playerWin = 0;
+            computerWin = 0;
+        }
+        if (computerWin === 5)
+        {
+            totalRes.textContent = "Computer reached 5 points: You lost :(";
+            playerWin = 0;
+            computerWin = 0;
+        }
+    }))
+
+    console.log(`player tot: ${playerWin}`);
+    console.log(`comp tot: ${computerWin}`);
+    
+}
+
+game();
